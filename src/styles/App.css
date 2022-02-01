@@ -1,0 +1,66 @@
+.App {
+	text-align: center;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	background-color: #FFFFFF;
+}
+
+.logo {
+	margin-top: 19px;
+	margin-bottom: 19px;
+	margin-left: 16px;
+}
+
+.container {
+	display: flex;
+	align-items: flex-start;
+	color: #192024;
+}
+
+.content-container {
+	display: flex;
+	flex-direction: column;
+	margin-left: 94px;
+	margin-top: 67px;
+	font-family: HelveticaNeue;
+}
+
+.title-container {
+	margin-bottom: 73px;
+	font-size: 44px;
+	font-weight: 900;
+	color: #000000;
+}
+
+.filter-container {
+	flex-direction: column;
+	margin-bottom: 56px;
+}
+
+.grid-container {	
+	display: grid;
+  	grid-template-columns: repeat(4, 300px);
+	grid-gap: 16px;
+	margin-bottom: 56px;
+}
+
+@media screen and (max-width:1347px){
+	.grid-container {	
+		grid-template-columns: repeat(3, 300px);
+	}
+}
+
+@media screen and (max-width:1031px){
+	.grid-container {	
+		grid-template-columns: repeat(2, 300px);
+	}
+}
+
+@media screen and (max-width:715px){
+	.grid-container {	
+		grid-template-columns: repeat(1, 300px);
+	}
+}

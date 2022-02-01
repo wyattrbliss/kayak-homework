@@ -1,37 +1,37 @@
 import kayakLogo from './images/Logo.svg';
+import check from './images/iconmonstr-check-mark-12.svg';
 import { useState, useEffect } from 'react';
 import fetchJsonp from 'fetch-jsonp';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import CardComponent from './components/CardComponent';
-import { AirlineProps } from './properties';
-import './App.css';
+import { AirlineProps, FilterProps } from './properties';
+import './styles/App.css';
+import './styles/Filter.css';
+import './styles/Card.css';
+
+
+enum Alliance {
+	OW = "OW",
+  	ST = "ST",
+  	SA = "SA"
+}
 
 function App() {
 
 	
-
-	const alliances2 = {
-		"OW": "Oneworld",
-		"ST": "Sky Team",
-		"SA": "Star Alliance"
-	}
 	// api url
 	const url = "https://kayak.com/h/mobileapis/directory/airlines/homework";
+
+	// button constants
+	const alliances = new Map<string, string>();
+	alliances.set("OW", "Oneworld");
+	alliances.set("ST", "Sky Team");
+	alliances.set("SA", "Star Alliance");
 
 	// state variables
 	const [airlines, setAirlines] = useState<AirlineProps[]>([]);
 	const [airlineIndex, setAirlineIndex] = useState(12);
-	const [filterInfo, setFilterInfo] = useState({
-		flag: false,
-		code: ""
-	});
-	const [activeButton, setActivebutton] = useState("");
-
-	// to fetch data on load
-	useEffect(() => {
-		getAirlinesOnLoad();
-	  }, []);
-	
+	const [filterCodes, setFilterCodes] = useState<string[]>([]);
 
 	// to get data from the jsonp api
 	async function getAirlinesOnLoad() {
@@ -45,44 +45,32 @@ function App() {
 		})
 		.then((data) => {
 			setAirlines(data);
-			console.log("airlines", airlines);
 		})
 		.catch((error) => {
 			console.log(error);
 		})
 	}
 
-	// to change what is filtered
-	function handleFilter(allianceCode: string) : void {
-		if (filterInfo.flag) {
-			if (allianceCode  != filterInfo.code) {
-				setFilterInfo({flag: filterInfo.flag, code: allianceCode});
-				return;
-			}
-		}
-		setFilterInfo({flag: !filterInfo.flag, code: allianceCode});	
-	}
+	// to fetch data on load
+	useEffect(() => {
+		getAirlinesOnLoad();
+	  }, []);
 
-	// to handle selected button click
-	function handleActiveButton(code: string) : void {
-		if (activeButton == code) {
-			setActivebutton("");
+	// to handle button click
+	function handleClick(code: string) {
+		let codes = [...filterCodes];
+		let index = codes.indexOf(code);
+		console.log("codes", codes)
+		console.log("index", index)
+
+		if (index == -1) {
+			codes.push(code);
+			setFilterCodes(codes);
 		}  else {
-			setActivebutton(code);
+			codes.splice(index, 1);
+			setFilterCodes(codes)
 		}
 	}
-
-	// to handle a button click
-	function handleClick(allianceCode: string) : void {
-		handleActiveButton(allianceCode);
-		handleFilter(allianceCode);
-	}
-
-	// button constants
-	const alliances = new Map<string, string>();
-	alliances.set("OW", "Oneworld");
-	alliances.set("ST", "Sky Team");
-	alliances.set("SA", "Star Alliance");	
 
 
 	return (
@@ -90,37 +78,36 @@ function App() {
 			<div className="header">
 				<img className="logo" src={kayakLogo}></img>
 			</div>
+
 			<div className="content-container">
 				<div className="container title-container">
 					Airlines
 				</div>
+
 				<div className=" container filter-container">
 					<div className="filter-title-container">
 						Filter by Alliances
 					</div>
 					<div className="filter-buttons">
-					{Object.keys(alliances2).map((key) => (
-						<div className="button-container" key={key}>
-							<button className={`filter-button ${activeButton == key ? "active-button" : ""}`} 
-								onClick={() => handleClick(key)}>
-							</button>
-							<div className="button-text">{alliances.get(key)}</div>
-						</div>))}
+						{Object.keys(Alliance).map((key) => (
+							<div className="button-container" key={key}>
+								<button className="filter-button" onClick={() => handleClick(key)}>
+									<img className={`check-image ${filterCodes.includes(key) ? "active-button" : ""}`} src={check}></img>
+								</button>
+								<div className="button-text">{alliances.get(key)}</div>
+							</div>))}
 					</div>
-				</div>
-				<InfiniteScroll
-          		dataLength={airlineIndex}
-          		next={() => {
-					  setAirlineIndex(airlineIndex + 12);
-					}}
-          		hasMore={true}
-          		loader={<span></span>}
-				endMessage={<span></span>}
-        		>
-					{filterInfo.flag
+        		</div>
+	
+				<InfiniteScroll dataLength={airlineIndex}
+								next={() => {setAirlineIndex(airlineIndex + 12);}}
+								hasMore={true}
+								loader={<span></span>}
+								endMessage={<span></span>}>
+					{filterCodes.length > 0
 					?
 					<div className="container grid-container">
-						{airlines.filter((airline) => airline.alliance == filterInfo.code).slice(0, airlineIndex).map((airline, index) => (
+						{airlines.filter((airline) => filterCodes.includes(airline.alliance)).slice(0, airlineIndex).map((airline, index) => (
 							<CardComponent
 								airline={airline}
 								index={index}

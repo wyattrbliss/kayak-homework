@@ -1,15 +1,21 @@
 // properties for airlines
 export interface AirlineProps {
-    "site": string | null,
-    "code": string | null,
-    "alliance": string | null,
-    "phone": string | null,
-    "name": string | null,
-    "usName": string | null,
-    "__clazz": string | null,
-    "defaultName": string | null,
-    "logoURL": string | undefined
+    "site": string,
+    "code": string,
+    "alliance": string,
+    "phone": string,
+    "name": string,
+    "usName": string,
+    "__clazz": string,
+    "defaultName": string,
+    "logoURL": string
   }
+
+// properties for filters
+export interface FilterProps {
+    flag: boolean;
+    codes: string[]
+}
 
 // properties for cards
 export interface CardProps {
