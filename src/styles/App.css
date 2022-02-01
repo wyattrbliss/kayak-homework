@@ -47,19 +47,19 @@
 	margin-bottom: 56px;
 }
 
-@media screen and (max-width:1347px){
+@media screen and (max-width:1364px){
 	.grid-container {	
 		grid-template-columns: repeat(3, 300px);
 	}
 }
 
-@media screen and (max-width:1031px){
+@media screen and (max-width:1048px){
 	.grid-container {	
 		grid-template-columns: repeat(2, 300px);
 	}
 }
 
-@media screen and (max-width:715px){
+@media screen and (max-width:732px){
 	.grid-container {	
 		grid-template-columns: repeat(1, 300px);
 	}
