@@ -1,4 +1,4 @@
-import { CardProps } from "../properties";
+import { CardProps } from "../constants";
 
 
 // button constants
@@ -20,7 +20,7 @@ function CardComponent(props: CardProps) {
                     {props.airline.phone != "none" && <div>{props.airline.phone}</div>}
                     <div className="airline-site">
                         {props.airline.site && props.airline.site != "none" 
-                        && <div>{props.airline.site.replace("https://", "").split("/")[0]}</div>}
+                        && <div>{props.airline.site.replace("https://", "").replace("http://", "").split("/")[0]}</div>}
                     </div>
                 </div>
             </div>

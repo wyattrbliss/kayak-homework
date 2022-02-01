@@ -11,14 +11,17 @@ export interface AirlineProps {
     "logoURL": string
   }
 
-// properties for filters
-export interface FilterProps {
-    flag: boolean;
-    codes: string[]
-}
-
 // properties for cards
 export interface CardProps {
     airline: AirlineProps;
     index: number;
 }
+
+// api url
+export const url = "https://kayak.com/h/mobileapis/directory/airlines/homework";
+
+// button constants
+export const alliances = new Map<string, string>();
+alliances.set("OW", "Oneworld");
+alliances.set("ST", "Sky Team");
+alliances.set("SA", "Star Alliance");

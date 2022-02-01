@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import fetchJsonp from 'fetch-jsonp';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import CardComponent from './components/CardComponent';
-import { AirlineProps, FilterProps } from './properties';
+import { AirlineProps, url, alliances} from './constants';
 import './styles/App.css';
 import './styles/Filter.css';
 import './styles/Card.css';
@@ -18,15 +18,6 @@ enum Alliance {
 
 function App() {
 
-	
-	// api url
-	const url = "https://kayak.com/h/mobileapis/directory/airlines/homework";
-
-	// button constants
-	const alliances = new Map<string, string>();
-	alliances.set("OW", "Oneworld");
-	alliances.set("ST", "Sky Team");
-	alliances.set("SA", "Star Alliance");
 
 	// state variables
 	const [airlines, setAirlines] = useState<AirlineProps[]>([]);
@@ -60,8 +51,6 @@ function App() {
 	function handleClick(code: string) {
 		let codes = [...filterCodes];
 		let index = codes.indexOf(code);
-		console.log("codes", codes)
-		console.log("index", index)
 
 		if (index == -1) {
 			codes.push(code);
