@@ -24,6 +24,8 @@ function App() {
 		.then((response) => {
 			if(response.ok) {
 				return response.json();
+			} else {
+				alert("failure to load data");
 			}
 		})
 		.then((data) => {
