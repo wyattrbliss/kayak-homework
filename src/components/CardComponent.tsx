@@ -3,9 +3,9 @@ import { getAlliance, shortenURL } from "../utilities/utils";
 import "../styles/Card.css";
 	
 
-function CardComponent({ airline, index }: CardProps) {
+function CardComponent({ airline }: CardProps) {
     return (
-        <div className="airline-card" key={index}>
+        <div className="airline-card">
             <div className="card-container">
                 <div>
                     <img className="card-logo" src={"https://kayak.com" + airline.logoURL} alt="airline logo"></img>

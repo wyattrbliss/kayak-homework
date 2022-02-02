@@ -68,7 +68,7 @@ function App() {
 						{airlines.filter((airline) => filterCodes.includes(airline.alliance)).slice(0, airlineIndex).map((airline, index) => (
 							<CardComponent
 								airline={airline}
-								index={index}
+								key={airline.code}
 							/>))}
 					</div>
 					:
@@ -76,7 +76,7 @@ function App() {
 						{airlines.slice(0, airlineIndex).map((airline, index) => (
 							<CardComponent
 								airline={airline}
-								index={index}
+								key={airline.code}
 							/>))}
 					</div>
 					}

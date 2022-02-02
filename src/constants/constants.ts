@@ -28,7 +28,6 @@ export interface FilterProps {
 // properties for cards
 export interface CardProps {
 	airline: AirlineProps;
-	index: number;
 }
 
 // api url
