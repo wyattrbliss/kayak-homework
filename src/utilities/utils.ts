@@ -1,4 +1,4 @@
-import { Alliance } from "../constants";
+import { Alliance } from "../constants/constants";
 
 // to get the correct alliance
 export function getAlliance(alliance: string) {

@@ -1,4 +1,4 @@
-import { CardProps } from "../constants";
+import { CardProps } from "../constants/constants";
 import { getAlliance, shortenURL } from "../utilities/utils";
 import "../styles/Card.css";
 	

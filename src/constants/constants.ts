@@ -7,21 +7,22 @@ export enum Alliance {
 
 // properties for airlines
 export interface AirlineProps {
-	site: string,
-	code: string,
-	alliance: Alliance,
-	phone: string,
-	name: string,
-	usName: string,
-	__clazz: string,
-	defaultName: string,
-	logoURL: string
+	site: string;
+	code: string;
+	alliance: Alliance;
+	phone: string;
+	name: string;
+	usName: string;
+	__clazz: string;
+	defaultName: string;
+	logoURL: string;
 }
 
 // properties for filters
 export interface FilterProps {
-	codes: string[],
-	ClickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void
+	filterCodes: string[];
+	setFilterCodes: (codes: string[]) => void;
+	setAirlineIndex: (index: number) => void;
 }
 
 // properties for cards

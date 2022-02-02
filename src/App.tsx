@@ -2,11 +2,10 @@ import kayakLogo from "./images/Logo.svg";
 import { useState, useEffect } from "react";
 import fetchJsonp from "fetch-jsonp";
 import InfiniteScroll from "react-infinite-scroll-component";
+import FilterComponent from "./components/FilterComponent";
 import CardComponent from "./components/CardComponent";
-import { AirlineProps, URL, INCREMENT, Alliance} from "./constants";
-import { getAlliance } from "./utilities/utils";
+import { AirlineProps, URL, INCREMENT } from "./constants/constants";
 import "./styles/App.css";
-import "./styles/Filter.css";
 
 
 function App() {
@@ -40,20 +39,6 @@ function App() {
 		getAirlinesOnLoad();
 	  }, []);
 
-	// to handle button click
-	function handleClick(code: string) {
-		let codes = [...filterCodes];
-		let index = codes.indexOf(code);
-
-		if (index === -1) {
-			codes.push(code);
-			setFilterCodes(codes);
-		}  else {
-			codes.splice(index, 1);
-			setFilterCodes(codes);
-		}
-	}
-
 
 	return (
   		<div className="App">
@@ -66,18 +51,9 @@ function App() {
 					Airlines
 				</div>
 
-				<div className=" container filter-container">
-					<div className="filter-title-container">
-						Filter by Alliances
-					</div>
-					<div className="filter-buttons">
-						{Object.keys(Alliance).map((key) => (
-							<div className="button-container" key={key}>
-								<input type="checkbox" className="filter-button" onClick={() => handleClick(key)}/>
-								<div className="button-text">{getAlliance(key)}</div>
-							</div>))}
-					</div>
-        		</div>
+				<FilterComponent filterCodes={filterCodes}
+								 setFilterCodes={setFilterCodes}
+								 setAirlineIndex={setAirlineIndex}/>
 
 				<InfiniteScroll dataLength={airlineIndex}
 								next={() => {setAirlineIndex(airlineIndex + INCREMENT);}}
