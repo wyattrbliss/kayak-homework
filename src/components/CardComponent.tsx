@@ -16,7 +16,7 @@ function CardComponent(props: CardProps) {
             <div className="card-text">
                 <div className="airline-name">{props.airline.name}</div>
                 <div className="hidden-text">
-                    {props.airline.alliance && props.airline.alliance != "none" && <div>{alliances.get(props.airline.alliance)}</div>}
+                    {props.airline.alliance && <div>{alliances.get(props.airline.alliance)}</div>}
                     {props.airline.phone != "none" && <div>{props.airline.phone}</div>}
                     <div className="airline-site">
                         {props.airline.site && props.airline.site != "none" 

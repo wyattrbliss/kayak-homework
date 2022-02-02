@@ -25,17 +25,6 @@
     align-items: center;
 }
 
-.check-image {
-    max-width: 15px;
-    max-height: 15px;
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-
-.active-button.check-image {
-	opacity: 1;
-}
-
 .button-text {
 	margin-left: 10px;
 	margin-right: 24px;

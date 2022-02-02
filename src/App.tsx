@@ -1,20 +1,19 @@
 import kayakLogo from './images/Logo.svg';
-import check from './images/iconmonstr-check-mark-12.svg';
 import { useState, useEffect } from 'react';
 import fetchJsonp from 'fetch-jsonp';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import CardComponent from './components/CardComponent';
-import { AirlineProps, url, alliances} from './constants';
+import { AirlineProps, URL, Alliance} from './constants';
 import './styles/App.css';
 import './styles/Filter.css';
 import './styles/Card.css';
 
 
-enum Alliance {
-	OW = "OW",
-  	ST = "ST",
-  	SA = "SA"
-}
+// button constants
+export const alliances = new Map<string, string>();
+alliances.set("OW", "Oneworld");
+alliances.set("ST", "Sky Team");
+alliances.set("SA", "Star Alliance");
 
 function App() {
 
@@ -26,7 +25,7 @@ function App() {
 
 	// to get data from the jsonp api
 	async function getAirlinesOnLoad() {
-		fetchJsonp(url, {
+		fetchJsonp(URL, {
 			jsonpCallback: "jsonp",
 		})
 		.then((response) => {
@@ -57,7 +56,7 @@ function App() {
 			setFilterCodes(codes);
 		}  else {
 			codes.splice(index, 1);
-			setFilterCodes(codes)
+			setFilterCodes(codes);
 		}
 	}
 
@@ -80,14 +79,12 @@ function App() {
 					<div className="filter-buttons">
 						{Object.keys(Alliance).map((key) => (
 							<div className="button-container" key={key}>
-								<button className="filter-button" onClick={() => handleClick(key)}>
-									<img className={`check-image ${filterCodes.includes(key) ? "active-button" : ""}`} src={check}></img>
-								</button>
+								<input type="checkbox" className="filter-button" onClick={() => handleClick(key)}/>
 								<div className="button-text">{alliances.get(key)}</div>
 							</div>))}
 					</div>
         		</div>
-	
+
 				<InfiniteScroll dataLength={airlineIndex}
 								next={() => {setAirlineIndex(airlineIndex + 12);}}
 								hasMore={true}

@@ -9,7 +9,7 @@
 	box-shadow: 0 -1px 4px 0 rgba(25, 32, 36, 0.04),
 	0 3px 6px 0 rgba(25, 32, 36, 0.15);
     border: solid 1px #FFFFFF;
-    transition: border 1s;
+    transition: border 300ms;
 }
 
 .card-logo {
@@ -21,7 +21,7 @@
 .airline-name {
 	font-size: 16px;
 	font-weight: bold;
-    transition: font-size 1s;
+    transition: font-size 300ms;
 }
 
 .card-text {
@@ -36,7 +36,7 @@
     opacity: 0;
     font-size: 0px;
     overflow: hidden;
-    transition: all 1s ease-out;
+    transition: all 300ms ease-out;
 }
 
 .airline-site {
@@ -45,6 +45,7 @@
 
 .airline-card:hover {
     border: solid 1px #363f45;
+	cursor: pointer;
 }
 
 .airline-card:hover .hidden-text {
