@@ -33,3 +33,6 @@ export interface CardProps {
 // api url
 export const URL = "https://kayak.com/h/mobileapis/directory/airlines/homework";
 
+// constant for incrementing scroll
+export const INCREMENT = 12;
+

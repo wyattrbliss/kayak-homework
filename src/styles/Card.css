@@ -12,6 +12,14 @@
     transition: border 300ms;
 }
 
+.card-container {
+	max-width: 240px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	word-break: break-word;
+}
+
 .card-logo {
 	max-width: 32px;
 	max-height: 32px;
@@ -25,11 +33,7 @@
 }
 
 .card-text {
-	display: flex;
-	flex-direction: column;
-    align-items: flex-start;
-	max-width: 240px;
-	overflow-wrap: break-word;
+	text-align: left;
 }
 
 .hidden-text {

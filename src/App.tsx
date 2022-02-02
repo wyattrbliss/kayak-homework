@@ -1,26 +1,20 @@
-import kayakLogo from './images/Logo.svg';
-import { useState, useEffect } from 'react';
-import fetchJsonp from 'fetch-jsonp';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import CardComponent from './components/CardComponent';
-import { AirlineProps, URL, Alliance} from './constants';
-import './styles/App.css';
-import './styles/Filter.css';
-import './styles/Card.css';
+import kayakLogo from "./images/Logo.svg";
+import { useState, useEffect } from "react";
+import fetchJsonp from "fetch-jsonp";
+import InfiniteScroll from "react-infinite-scroll-component";
+import CardComponent from "./components/CardComponent";
+import { AirlineProps, URL, INCREMENT, Alliance} from "./constants";
+import { getAlliance } from "./utilities/utils";
+import "./styles/App.css";
+import "./styles/Filter.css";
 
-
-// button constants
-export const alliances = new Map<string, string>();
-alliances.set("OW", "Oneworld");
-alliances.set("ST", "Sky Team");
-alliances.set("SA", "Star Alliance");
 
 function App() {
 
 
 	// state variables
 	const [airlines, setAirlines] = useState<AirlineProps[]>([]);
-	const [airlineIndex, setAirlineIndex] = useState(12);
+	const [airlineIndex, setAirlineIndex] = useState(INCREMENT);
 	const [filterCodes, setFilterCodes] = useState<string[]>([]);
 
 	// to get data from the jsonp api
@@ -51,7 +45,7 @@ function App() {
 		let codes = [...filterCodes];
 		let index = codes.indexOf(code);
 
-		if (index == -1) {
+		if (index === -1) {
 			codes.push(code);
 			setFilterCodes(codes);
 		}  else {
@@ -64,7 +58,7 @@ function App() {
 	return (
   		<div className="App">
 			<div className="header">
-				<img className="logo" src={kayakLogo}></img>
+				<img className="logo" src={kayakLogo} alt="KAYAK logo"></img>
 			</div>
 
 			<div className="content-container">
@@ -80,13 +74,13 @@ function App() {
 						{Object.keys(Alliance).map((key) => (
 							<div className="button-container" key={key}>
 								<input type="checkbox" className="filter-button" onClick={() => handleClick(key)}/>
-								<div className="button-text">{alliances.get(key)}</div>
+								<div className="button-text">{getAlliance(key)}</div>
 							</div>))}
 					</div>
         		</div>
 
 				<InfiniteScroll dataLength={airlineIndex}
-								next={() => {setAirlineIndex(airlineIndex + 12);}}
+								next={() => {setAirlineIndex(airlineIndex + INCREMENT);}}
 								hasMore={true}
 								loader={<span></span>}
 								endMessage={<span></span>}>
