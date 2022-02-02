@@ -13,7 +13,7 @@ function CardComponent({ airline, index }: CardProps) {
                 <div className="card-text">
                     <div className="airline-name">{airline.name}</div>
                     <div className="hidden-text">
-                        {airline.alliance && <div>{getAlliance(airline.alliance)}</div>}
+                        {airline.alliance && airline.alliance && <div>{getAlliance(airline.alliance)}</div>}
                         {airline.phone !== "none" && <div>{airline.phone}</div>}
                         <div className="airline-site">
                             {airline.site && airline.site !== "none" 

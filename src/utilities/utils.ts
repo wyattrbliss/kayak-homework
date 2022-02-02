@@ -13,7 +13,7 @@ export function getAlliance(alliance: string) {
             return "Sky Team"; 
          } 
         default: { 
-            return "none";
+            return "";
         } 
      } 
 }
